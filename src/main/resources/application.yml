@@ -13,6 +13,17 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+        cluster-name: BJ
 
 server:
   port: 9090
+
+#user-center:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# 饥饿加载
+ribbon:
+  eager-load:
+    enabled: true
+    clients: user-center # 多个以, 分割
