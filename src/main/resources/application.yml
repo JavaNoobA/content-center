@@ -27,3 +27,10 @@ ribbon:
   eager-load:
     enabled: true
     clients: user-center # 多个以, 分割
+
+feign:
+  client:
+    config:
+      # 想要调用的微服务名称
+      user-center:
+        loggerLevel: FULL
