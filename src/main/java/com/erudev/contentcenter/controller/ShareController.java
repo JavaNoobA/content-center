@@ -1,5 +1,6 @@
-package com.erudev.contentcenter.service.content.controller.content;
+package com.erudev.contentcenter.controller;
 
+import com.erudev.contentcenter.auth.CheckLogin;
 import com.erudev.contentcenter.domain.dto.content.ShareDTO;
 import com.erudev.contentcenter.service.content.ShareService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class ShareController {
     private ShareService shareService;
 
     @GetMapping("/{id}")
+    @CheckLogin
     public ShareDTO findById(@PathVariable Integer id) {
         return shareService.findById(id);
     }

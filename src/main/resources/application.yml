@@ -54,3 +54,8 @@ rocketmq:
 logging:
   level:
     com.alibaba.nacos: error
+
+jwt:
+  secret: erudev
+  # 有效期，单位秒，默认2周
+  expire-time-in-second: 1209600

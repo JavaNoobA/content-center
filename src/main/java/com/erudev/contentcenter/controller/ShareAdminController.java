@@ -1,5 +1,6 @@
 package com.erudev.contentcenter.controller;
 
+import com.erudev.contentcenter.auth.CheckAuthorization;
 import com.erudev.contentcenter.domain.dto.content.ShareAuditDTO;
 import com.erudev.contentcenter.domain.entity.content.Share;
 import com.erudev.contentcenter.service.content.ShareService;
@@ -18,6 +19,7 @@ public class ShareAdminController {
     private ShareService shareService;
 
     @PutMapping("/audit/{id}")
+    @CheckAuthorization(value = "admin")
     public Share auditById(@PathVariable Integer id, @RequestBody ShareAuditDTO auditDTO) {
         // TODO 鉴权 登录状态
         return shareService.auditById(id, auditDTO);
