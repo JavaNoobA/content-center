@@ -5,6 +5,8 @@ import com.erudev.contentcenter.domain.entity.content.MidUserShare;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +25,8 @@ public class TestController {
     private MidUserShareMapper midUserShareMapper;
     @Autowired
     private DiscoveryClient discoveryClient;
+    @Autowired
+    private Source source;
 
     @GetMapping
     public MidUserShare test() {
@@ -35,5 +39,13 @@ public class TestController {
     public List<ServiceInstance> list() {
         // 查询指定服务名所有的实例信息
         return discoveryClient.getInstances("user-center");
+    }
+
+    @GetMapping("/test-stream")
+    public String testStream() {
+        source.output().send(
+                MessageBuilder.withPayload("消息体").build()
+        );
+        return "success";
     }
 }

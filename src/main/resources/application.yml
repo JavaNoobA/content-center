@@ -14,9 +14,18 @@ spring:
       discovery:
         server-addr: localhost:8848
         cluster-name: BJ
-    sentinel:
-      transport:
-        dashboard: localhost:8080
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+        bindings:
+          output:
+            producer:
+              transactional: true
+              group: tx-add-bonus-group
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
 
 server:
   port: 9090
@@ -37,3 +46,11 @@ feign:
       # 想要调用的微服务名称
       user-center:
         loggerLevel: FULL
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: test-group
+
+logging:
+  level:
+    com.alibaba.nacos: error
