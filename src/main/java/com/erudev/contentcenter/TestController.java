@@ -48,4 +48,9 @@ public class TestController {
         );
         return "success";
     }
+
+    @GetMapping("/test-config")
+    public String testConfig() {
+        return "";
+    }
 }

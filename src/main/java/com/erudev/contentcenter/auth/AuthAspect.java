@@ -23,7 +23,7 @@ import java.util.Objects;
 public class AuthAspect {
     private final JwtOperator jwtOperator;
 
-    @Around("@annotation(com.itmuch.contentcenter.auth.CheckLogin)")
+    @Around("@annotation(com.erudev.contentcenter.auth.CheckLogin)")
     public Object checkLogin(ProceedingJoinPoint point) throws Throwable {
         checkToken();
         return point.proceed();
@@ -58,7 +58,7 @@ public class AuthAspect {
         return attributes.getRequest();
     }
 
-    @Around("@annotation(com.itmuch.contentcenter.auth.CheckAuthorization)")
+    @Around("@annotation(com.erudev.contentcenter.auth.CheckAuthorization)")
     public Object checkAuthorization(ProceedingJoinPoint point) throws Throwable {
         try {
             // 1. 验证token是否合法；
